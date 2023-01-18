@@ -59,7 +59,7 @@
     },
     "FORCE_SUB_MESSAGE": {
       "description": "Pesan Paksa Subscribe bot, Gunakan Format parsemode HTML",
-      "value": "<b>Hello {first}\n\nAnda harus bergabung di Channel/Grup saya untuk menggunakan saya\n\nSilakan Join Ke Channel Terlebih Dahulu.\n\n.</b>"
+      "value": "<b>Hello {first}\n\nSilakan Join Ke Channel Terlebih Dahulu.\n\n.</b>"
     }
   },
   "addons": [
