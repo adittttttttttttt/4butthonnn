@@ -18,9 +18,6 @@ APP_ID = int(os.environ.get("APP_ID", ""))
 # API Hash Anda dari my.telegram.org
 API_HASH = os.environ.get("API_HASH", "")
 
-# Protect Content
-PROTECT_CONTENT = int(os.environ.get("PROTECT_CONTENT", "False"))
-
 # ID Channel Database
 CHANNEL_ID = int(os.environ.get("CHANNEL_ID", ""))
 
