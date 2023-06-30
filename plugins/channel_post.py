@@ -21,8 +21,14 @@ from helper_func import encode
     )
 )
 async def channel_post(client: Client, message: Message):
-Expand All
-	@@ -32,10 +49,10 @@ async def channel_post(client: Client, message: Message):
+    reply_text = await message.reply_text("<code>Tunggu Sebentar...</code>", quote=True)
+    try:
+        post_message = await message.copy(
+            chat_id=client.db_channel.id, disable_notification=True
+        )
+    except FloodWait as e:
+        await asyncio.sleep(e.x)
+        post_message = await message.copy(
             chat_id=client.db_channel.id, disable_notification=True
         )
     except Exception as e:
@@ -33,8 +39,21 @@ Expand All
     string = f"get-{converted_id}"
     base64_string = await encode(string)
     link = f"https://t.me/{client.username}?start={base64_string}"
-Expand All
-	@@ -57,18 +74,19 @@ async def channel_post(client: Client, message: Message):
+
+    reply_markup = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    "🔁 Share Link", url=f"https://telegram.me/share/url?url={link}"
+                )
+            ]
+        ]
+    )
+
+    await reply_text.edit(
+        f"<b>Link Sharing File Berhasil Di Buat :</b>\n\n{link}",
+        reply_markup=reply_markup,
+        disable_web_page_preview=True,
     )
 
     if not DISABLE_CHANNEL_BUTTON:
@@ -53,8 +72,14 @@ async def new_post(client: Client, message: Message):
     string = f"get-{converted_id}"
     base64_string = await encode(string)
     link = f"https://t.me/{client.username}?start={base64_string}"
-Expand All
-	@@ -83,5 +101,5 @@ async def new_post(client: Client, message: Message):
+    reply_markup = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    "🔁 Share Link", url=f"https://telegram.me/share/url?url={link}"
+                )
+            ]
+        ]
     )
     try:
         await message.edit_reply_markup(reply_markup)
